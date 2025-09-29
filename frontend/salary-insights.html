@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Salary Insights - JobReady</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">JR</div>
+        <div class="app-name">JobReady</div>
+      </div>
+      <nav>
+        <a href="index.html" class="nav-link"><i class="fa fa-home"></i><span>Dashboard</span></a>
+        <a href="job-search.html" class="nav-link"><i class="fa fa-search"></i><span>Job Search</span></a>
+        <a href="salary-insights.html" class="nav-link active"><i class="fa fa-money-bill-wave"></i><span>Salary Insights</span></a>
+        <a href="company-insights.html" class="nav-link"><i class="fa fa-building"></i><span>Company Insights</span></a>
+        <a href="profile.html" class="nav-link"><i class="fa fa-user"></i><span>Profile</span></a>
+        <a href="#" id="logout" class="nav-link"><i class="fa fa-sign-out-alt"></i><span>Logout</span></a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <h1>Salary Insights</h1>
+      </header>
+
+      <section class="content">
+        <div class="card">
+          <h3>Estimate Salary</h3>
+          <input id="salaryTitle" placeholder="Job title (e.g., nodejs developer)" />
+          <input id="salaryLocation" placeholder="Location (e.g., New York)" />
+          <button id="salaryBtn" class="btn">Get Estimate</button>
+          <div id="salaryResult"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/jobs.js"></script>
+</body>
+</html>

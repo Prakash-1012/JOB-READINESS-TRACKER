@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign Up - JobReady</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card card">
+      <h2>Create account</h2>
+      <input id="name" placeholder="Full name" />
+      <input id="age" placeholder="Age" type="number" />
+      <select id="gender">
+        <option value="">Select gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
+      <input id="email" placeholder="Email" type="email" />
+      <input id="username" placeholder="Username" />
+      <input id="password" type="password" placeholder="Password" />
+      <button id="signupBtn" class="btn">Sign up</button>
+      <p style="margin-top:12px">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+  <script src="js/auth.js"></script>
+</body>
+</html>

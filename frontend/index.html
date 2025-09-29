@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Job Readiness Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">JR</div>
+        <div class="app-name">JobReady</div>
+      </div>
+      <nav>
+        <a href="index.html" class="nav-link active"><i class="fa fa-home"></i><span>Dashboard</span></a>
+        <a href="job-search.html" class="nav-link"><i class="fa fa-search"></i><span>Job Search</span></a>
+        <a href="salary-insights.html" class="nav-link"><i class="fa fa-money-bill-wave"></i><span>Salary Insights</span></a>
+        <a href="company-insights.html" class="nav-link"><i class="fa fa-building"></i><span>Company Insights</span></a>
+        <a href="profile.html" class="nav-link"><i class="fa fa-user"></i><span>Profile</span></a>
+        <a href="#" id="logout" class="nav-link"><i class="fa fa-sign-out-alt"></i><span>Logout</span></a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <h1>Dashboard</h1>
+        <div class="header-right">
+          <input id="globalSearch" placeholder="Search resources (Google)" />
+          <button id="globalSearchBtn" class="btn small">Search</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="welcome-card card">
+          <h2>Welcome back 👋</h2>
+          <p>Track goals, add skills and find relevant jobs.</p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>My Goals</h3>
+            <ul id="goalsList"></ul>
+            <div class="row">
+              <input id="goalInput" placeholder="Add new goal" />
+              <button id="addGoal" class="btn">Add</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Skills</h3>
+            <div id="skillsTags" class="tags"></div>
+            <div class="row">
+              <input id="skillInput" placeholder="Add skill and press Enter" />
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Saved Jobs</h3>
+            <div id="savedJobs"></div>
+          </div>
+
+          <div class="card">
+            <h3>Quick Actions</h3>
+            <a class="btn" href="job-search.html">Search Jobs</a>
+            <a class="btn ghost" href="salary-insights.html">Salary Insights</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

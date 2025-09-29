@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile - JobReady</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">JR</div>
+        <div class="app-name">JobReady</div>
+      </div>
+      <nav>
+        <a href="index.html" class="nav-link"><i class="fa fa-home"></i><span>Dashboard</span></a>
+        <a href="job-search.html" class="nav-link"><i class="fa fa-search"></i><span>Job Search</span></a>
+        <a href="salary-insights.html" class="nav-link"><i class="fa fa-money-bill-wave"></i><span>Salary Insights</span></a>
+        <a href="company-insights.html" class="nav-link"><i class="fa fa-building"></i><span>Company Insights</span></a>
+        <a href="profile.html" class="nav-link active"><i class="fa fa-user"></i><span>Profile</span></a>
+        <a href="#" id="logout" class="nav-link"><i class="fa fa-sign-out-alt"></i><span>Logout</span></a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <h1>Profile</h1>
+      </header>
+
+      <section class="content">
+        <div class="card">
+          <h3>Your info</h3>
+          <div id="profileInfo">Loading...</div>
+          <h4>Your Skills</h4>
+          <div id="profileSkills" class="tags"></div>
+          <h4>Saved Jobs</h4>
+          <div id="profileJobs"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    async function loadProfile(){
+      const u = localStorage.getItem('user');
+      if(!u) return window.location.href = 'login.html';
+      const user = JSON.parse(u);
+      // fetch latest from backend
+      try{
+        const res = await fetch('/api/auth/user/' + encodeURIComponent(user.username));
+        const json = await res.json();
+        if(res.ok && json.user){
+          const udata = json.user;
+          document.getElementById('profileInfo').innerHTML = `<p><strong>Name:</strong> ${udata.name}</p><p><strong>Username:</strong> ${udata.username}</p><p><strong>Email:</strong> ${udata.email}</p><p><strong>Age:</strong> ${udata.age || ''}</p><p><strong>Gender:</strong> ${udata.gender || ''}</p>`;
+        } else {
+          document.getElementById('profileInfo').textContent = 'Could not load profile';
+        }
+      }catch(e){ document.getElementById('profileInfo').textContent = 'Error loading profile'; console.error(e) }
+
+      // skills and saved jobs from localStorage
+      const skills = JSON.parse(localStorage.getItem('skills')||'[]');
+      document.getElementById('profileSkills').innerHTML = skills.map(s=>`<div class="tag">${s}</div>`).join('') || '<p class="muted">No skills</p>';
+      const saved = JSON.parse(localStorage.getItem('savedJobs')||'[]');
+      document.getElementById('profileJobs').innerHTML = saved.map(s=>`<div class="job-card"><h4>${s.job_title||s.title}</h4><div class="meta">${s.employer_name||s.company_name||''}</div></div>`).join('') || '<p class="muted">No saved jobs</p>';
+    }
+    document.addEventListener('DOMContentLoaded', loadProfile);
+  </script>
+</body>
+</html>
