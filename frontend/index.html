@@ -14,23 +14,31 @@
         <div class="logo">JR</div>
         <div class="app-name">JobReady</div>
       </div>
-      <nav>
-        <a href="index.html" class="nav-link active"><i class="fa fa-home"></i><span>Dashboard</span></a>
-        <a href="job-search.html" class="nav-link"><i class="fa fa-search"></i><span>Job Search</span></a>
-        <a href="salary-insights.html" class="nav-link"><i class="fa fa-money-bill-wave"></i><span>Salary Insights</span></a>
-        <a href="company-insights.html" class="nav-link"><i class="fa fa-building"></i><span>Company Insights</span></a>
-        <a href="profile.html" class="nav-link"><i class="fa fa-user"></i><span>Profile</span></a>
-        <a href="#" id="logout" class="nav-link"><i class="fa fa-sign-out-alt"></i><span>Logout</span></a>
-      </nav>
+     <nav>
+  <a href="index.html" class="nav-link active"><i class="fa fa-home"></i><span>Dashboard</span></a>
+  <a href="job-search.html" class="nav-link"><i class="fa fa-search"></i><span>Job Search</span></a>
+  <a href="salary-insights.html" class="nav-link"><i class="fa fa-money-bill-wave"></i><span>Salary Insights</span></a>
+  <a href="company-insights.html" class="nav-link"><i class="fa fa-building"></i><span>Company Insights</span></a>
+  <a href="profile.html" class="nav-link"><i class="fa fa-user"></i><span>Profile</span></a>
+
+  <a href="google-search.html" class="nav-link"><i class="fa fa-search-plus"></i><span>Resources</span></a>
+
+  <a href="#" id="logout" class="nav-link"><i class="fa fa-sign-out-alt"></i><span>Logout</span></a>
+</nav>
+
     </aside>
 
     <main class="main">
       <header class="main-header">
         <h1>Dashboard</h1>
         <div class="header-right">
-          <input id="globalSearch" placeholder="Search resources (Google)" />
-          <button id="globalSearchBtn" class="btn small">Search</button>
-        </div>
+          <div class="search-container">
+  <input type="text" id="google-query" placeholder="Search documentation, resources..." />
+  <button onclick="googleSearch()">Search</button>
+</div>
+
+<div id="google-results" class="results-container"></div>
+
       </header>
 
       <section class="content">

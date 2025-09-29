@@ -53,21 +53,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }
   renderSavedJobs();
 
-  // Global Google search
-  const gBtn = document.getElementById('globalSearchBtn');
-  if(gBtn){
-    gBtn.addEventListener('click', async ()=>{
-      const q = document.getElementById('globalSearch').value.trim();
-      if(!q) return alert('Enter search');
-      gBtn.disabled = true;
-      try{
-        const res = await fetch(`/api/google/search?q=${encodeURIComponent(q)}`);
-        const data = await res.json();
-        alert('Got results from Google Custom Search - check console (results in items array)');
-        console.log(data);
-      }catch(e){ alert('Search failed'); console.error(e) } finally{ gBtn.disabled=false }
-    });
-  }
 
   // Logout
   document.getElementById('logout')?.addEventListener('click', ()=>{
@@ -88,3 +73,66 @@ function showUserWelcome(){
   }catch(e){}
 }
 showUserWelcome();
+
+// ================= GOOGLE SEARCH (Resources page) =================
+async function googleSearch() {
+  const queryEl = document.getElementById('google-query');
+  const resultsEl = document.getElementById('google-results');
+  if (!queryEl || !resultsEl) return; // page not loaded or wrong ids
+
+  const q = queryEl.value.trim();
+  if (!q) {
+    resultsEl.innerHTML = '<p class="muted">Please enter a search query.</p>';
+    return;
+  }
+
+  resultsEl.innerHTML = '<p class="muted">Searching…</p>';
+  try {
+    const resp = await fetch(`/api/google/search?q=${encodeURIComponent(q)}`);
+    if (!resp.ok) {
+      // show error details (status) and log server message
+      const txt = await resp.text().catch(()=>null);
+      resultsEl.innerHTML = `<p class="muted">Search failed (status ${resp.status}). See console for details.</p>`;
+      console.error('Google search failed', resp.status, txt);
+      return;
+    }
+    const data = await resp.json();
+
+    // clear
+    resultsEl.innerHTML = '';
+
+    // Google custom search returns items array
+    if (!data.items || data.items.length === 0) {
+      resultsEl.innerHTML = '<p class="muted">No results found.</p>';
+      return;
+    }
+
+    data.items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'result-card card';
+      // show displayLink if present (host), and formatted snippet
+      const host = item.displayLink || item.formattedUrl || '';
+      const snippet = item.snippet || '';
+      const title = item.title || 'Untitled';
+
+      card.innerHTML = `
+        <a class="result-link" href="${item.link}" target="_blank" rel="noopener noreferrer">${title}</a>
+        <div class="meta" style="margin-top:6px;color:var(--muted);font-size:13px">${host}</div>
+        <p style="margin-top:10px;color:#ddd">${snippet}</p>
+      `;
+      resultsEl.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error('Google search error', err);
+    resultsEl.innerHTML = '<p class="muted">Error fetching results. Check console/network.</p>';
+  }
+}
+
+// bind UI (if the page loaded the button/field after main.js ran)
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('googleSearchBtn');
+  const input = document.getElementById('google-query');
+  if (btn) btn.addEventListener('click', googleSearch);
+  if (input) input.addEventListener('keydown', (e) => { if (e.key === 'Enter') googleSearch(); });
+});

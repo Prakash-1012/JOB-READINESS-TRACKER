@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resources - JobReady</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar (same structure & classes as other pages) -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">JR</div>
+        <div class="app-name">JobReady</div>
+      </div>
+      <nav>
+        <a href="index.html" class="nav-link"><i class="fa fa-home"></i><span>Dashboard</span></a>
+        <a href="job-search.html" class="nav-link"><i class="fa fa-search"></i><span>Job Search</span></a>
+        <a href="salary-insights.html" class="nav-link"><i class="fa fa-money-bill-wave"></i><span>Salary Insights</span></a>
+        <a href="company-insights.html" class="nav-link"><i class="fa fa-building"></i><span>Company Insights</span></a>
+        <a href="profile.html" class="nav-link"><i class="fa fa-user"></i><span>Profile</span></a>
+        <a href="google-search.html" class="nav-link active"><i class="fa fa-search-plus"></i><span>Resources</span></a>
+        <a href="#" id="logout" class="nav-link"><i class="fa fa-sign-out-alt"></i><span>Logout</span></a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="main-header">
+        <h1>Resources</h1>
+      </header>
+
+      <section class="content">
+        <div class="card">
+          <p class="muted">Search documentation, tutorials, and other resources via Google Custom Search.</p>
+
+          <div class="search-container" style="margin-top:12px;">
+            <input id="google-query" type="search" placeholder="Search documentation, tutorials, resources..." />
+            <button id="googleSearchBtn" class="btn">Search</button>
+          </div>
+
+          <div id="google-results" class="results-container" style="margin-top:16px;"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- main.js contains the googleSearch() function we add below -->
+  <script src="js/main.js"></script>
+</body>
+</html>
