@@ -29,15 +29,22 @@
         <h1>Company Insights</h1>
       </header>
 
-      <section class="content">
-        <div class="card">
-          <h3>Company Salary</h3>
-          <input id="companyName" placeholder="Company (e.g., Amazon)" />
-          <input id="companyTitle" placeholder="Job title (e.g., software developer)" />
-          <button id="companyBtn" class="btn">Get Company Salary</button>
-          <div id="companyResult"></div>
-        </div>
-      </section>
+    <section class="content">
+  <div class="card">
+    <h2>Company Insights</h2>
+    <p class="muted">Get salary insights for a role at a specific company.</p>
+
+    <div class="search-container">
+      <input type="text" id="company-name" placeholder="Company e.g. Amazon">
+      <input type="text" id="company-title" placeholder="Job title e.g. Software Developer">
+      <button onclick="getCompanyInsights()" class="btn">Get Insights</button>
+    </div>
+
+    <div id="company-results" class="results-container"></div>
+  </div>
+</section>
+
+
     </main>
   </div>
 

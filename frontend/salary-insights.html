@@ -30,14 +30,20 @@
       </header>
 
       <section class="content">
-        <div class="card">
-          <h3>Estimate Salary</h3>
-          <input id="salaryTitle" placeholder="Job title (e.g., nodejs developer)" />
-          <input id="salaryLocation" placeholder="Location (e.g., New York)" />
-          <button id="salaryBtn" class="btn">Get Estimate</button>
-          <div id="salaryResult"></div>
-        </div>
-      </section>
+  <div class="card">
+    <h2>Salary Insights</h2>
+    <p class="muted">Enter a job title and location to see estimated salaries.</p>
+
+    <div class="search-container">
+      <input type="text" id="salary-title" placeholder="Job title e.g. NodeJS Developer">
+      <input type="text" id="salary-location" placeholder="Location e.g. New York">
+      <button onclick="getSalaryInsights()" class="btn">Check Salary</button>
+    </div>
+
+    <div id="salary-results" class="results-container"></div>
+  </div>
+</section>
+
     </main>
   </div>
 
